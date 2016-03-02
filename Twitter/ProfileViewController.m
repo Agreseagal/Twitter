@@ -10,6 +10,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "User.h"
 #import "TweetCell.h"
+#import "TweetCellOdd.h"
 #import "TwitterClient.h"
 #import "Tweet.h"
 
@@ -48,6 +49,9 @@
     
     UINib *customNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
     [self.tableView registerNib:customNib forCellReuseIdentifier:@"TweetCell"];
+    
+    UINib *customNibOdd = [UINib nibWithNibName:@"TweetCellOdd" bundle:nil];
+    [self.tableView registerNib:customNibOdd forCellReuseIdentifier:@"TweetCellOdd"];
     
   
     

@@ -8,6 +8,7 @@
 
 #import "TimelineViewController.h"
 #import "TweetCell.h"
+#import "TweetCellOdd.h"
 #import "ComposeViewController.h"
 #import "TweetViewController.h"
 #import <UIImageView+AFNetworking.h>
@@ -64,6 +65,9 @@
     UINib *customNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
     [self.tableView registerNib:customNib forCellReuseIdentifier:@"TweetCell"];
     
+    UINib *customNibOdd = [UINib nibWithNibName:@"TweetCellOdd" bundle:nil];
+    [self.tableView registerNib:customNibOdd forCellReuseIdentifier:@"TweetCellOdd"];
+    
     //Refresh Control
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshView) forControlEvents:UIControlEventValueChanged];
@@ -79,31 +83,68 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"TweetCell";
-    TweetCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    Tweet *tweet = [self.tweets objectAtIndex:indexPath.row];
     
-    // Setting cell data from Tweet object
-    cell.statusLabel.text = tweet.tweet_text;
-    cell.nameLabel.text = tweet.name;
-    cell.twitterHandleLabel.text = tweet.twitter_handle;
-    cell.timeStampLabel.text = tweet.relative_timestamp;
+    if (indexPath.row % 2){
+    // odd
+        NSLog(@"odd");
+        
+        static NSString *cellIdentifier = @"TweetCellOdd";
+        TweetCellOdd *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        Tweet *tweet = [self.tweets objectAtIndex:indexPath.row];
+        
+        // Setting cell data from Tweet object
+        cell.statusLabel.text = tweet.tweet_text;
+        cell.nameLabel.text = tweet.name;
+        cell.twitterHandleLabel.text = tweet.twitter_handle;
+        cell.timeStampLabel.text = tweet.relative_timestamp;
+        
+        //tap on profile for ProfileViewController
+        UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileOnTap:)];
+        
+        cell.profileImageView.tag = indexPath.row;
+        [cell.profileImageView setUserInteractionEnabled:YES];
+        [tapgesture setDelegate:self];
+        [cell.profileImageView addGestureRecognizer:tapgesture];
+        
+        [cell.profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:tweet.profile_image_url]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            cell.profileImageView.image = image;
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        
+        return cell;
+        
+    }else{
+    // even
+        NSLog(@"even");
+        
+        static NSString *cellIdentifier = @"TweetCell";
+        TweetCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        Tweet *tweet = [self.tweets objectAtIndex:indexPath.row];
+        
+        // Setting cell data from Tweet object
+        cell.statusLabel.text = tweet.tweet_text;
+        cell.nameLabel.text = tweet.name;
+        cell.twitterHandleLabel.text = tweet.twitter_handle;
+        cell.timeStampLabel.text = tweet.relative_timestamp;
+        
+        //tap on profile for ProfileViewController
+        UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileOnTap:)];
+        
+        cell.profileImageView.tag = indexPath.row;
+        [cell.profileImageView setUserInteractionEnabled:YES];
+        [tapgesture setDelegate:self];
+        [cell.profileImageView addGestureRecognizer:tapgesture];
+        
+        [cell.profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:tweet.profile_image_url]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            cell.profileImageView.image = image;
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        
+        return cell;
+    }
     
-    //tap on profile for ProfileViewController
-    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileOnTap:)];
-    
-    cell.profileImageView.tag = indexPath.row;
-    [cell.profileImageView setUserInteractionEnabled:YES];
-    [tapgesture setDelegate:self];
-    [cell.profileImageView addGestureRecognizer:tapgesture];
-    
-    [cell.profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:tweet.profile_image_url]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        cell.profileImageView.image = image;
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        NSLog(@"%@", error);
-    }];
-    
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
