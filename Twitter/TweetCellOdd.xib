@@ -31,7 +31,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZq-cD-wdW">
-                        <rect key="frame" x="17" y="13" width="239" height="14.5"/>
+                        <rect key="frame" x="17" y="13" width="239" height="15"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tripta Gupta" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQX-2J-rge">
                                 <rect key="frame" x="61" y="0.0" width="69" height="14.5"/>
@@ -71,8 +71,8 @@
                             </mask>
                         </variation>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test Tweet Test Tweet Test Tweet Test Tweet" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="NLM-kd-xWQ">
-                        <rect key="frame" x="32" y="29" width="225" height="36"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Tweet Test Tweet Test Tweet Test Tweet" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="NLM-kd-xWQ">
+                        <rect key="frame" x="32" y="29.5" width="225" height="62"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="225" id="Kf5-Ka-qUV"/>
                         </constraints>
@@ -89,6 +89,7 @@
                     <constraint firstItem="3Vd-Qb-miO" firstAttribute="leading" secondItem="fZq-cD-wdW" secondAttribute="trailing" constant="9" id="ajA-uT-k2x"/>
                     <constraint firstItem="fZq-cD-wdW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="bM0-Gf-5tL"/>
                     <constraint firstAttribute="centerY" secondItem="3Vd-Qb-miO" secondAttribute="centerY" id="j9G-ep-IeF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NLM-kd-xWQ" secondAttribute="bottom" constant="8" id="oSD-dB-mzb"/>
                     <constraint firstItem="NLM-kd-xWQ" firstAttribute="top" secondItem="fZq-cD-wdW" secondAttribute="bottom" constant="2" id="u0H-gv-uPW"/>
                     <constraint firstItem="NLM-kd-xWQ" firstAttribute="leading" secondItem="3Vd-Qb-miO" secondAttribute="trailing" constant="-135" id="wOv-2n-6YR"/>
                     <constraint firstItem="fZq-cD-wdW" firstAttribute="top" secondItem="NLM-kd-xWQ" secondAttribute="bottom" constant="2" id="xbU-hU-BNF"/>

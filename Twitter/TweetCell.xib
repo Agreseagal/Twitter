@@ -32,6 +32,9 @@
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tripta Gupta" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vy-PX-zcR">
                         <rect key="frame" x="65" y="12" width="69" height="14.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14.5" id="7ay-xC-PL2"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="PokerKings-Regular" family="Poker Kings" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -64,6 +67,7 @@
                     <constraint firstItem="qby-sP-QGV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="euc-W7-ii2"/>
                     <constraint firstItem="ypc-Qx-MV5" firstAttribute="leading" secondItem="5vy-PX-zcR" secondAttribute="trailing" constant="5" id="f9A-DX-vLj"/>
                     <constraint firstItem="qby-sP-QGV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="gTY-4d-mTn"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="vCe-gO-OwJ" secondAttribute="bottom" constant="10" id="mwL-4B-Bfg"/>
                     <constraint firstItem="5vy-PX-zcR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="n90-iH-fyK"/>
                     <constraint firstItem="vCe-gO-OwJ" firstAttribute="top" secondItem="5vy-PX-zcR" secondAttribute="bottom" constant="2" id="rgV-Xw-fyl"/>
                 </constraints>

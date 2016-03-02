@@ -73,7 +73,19 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshView) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+    
+    [self enableSelfSizingCells:110.0];
 }
+
+
+//// Enable Self Sizing CELLS
+- (void)enableSelfSizingCells:(CGFloat)myRowHeight{
+    
+    self.tableView.estimatedRowHeight = myRowHeight;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+}
+
 
 #pragma mark - Table view data source
 
