@@ -59,6 +59,7 @@
 {
     [super viewDidLoad];
     
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -166,14 +167,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Selected row %d", indexPath.row);
+    NSLog(@"Selected row %ld", (long)indexPath.row);
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     Tweet *tweet = self.tweets[indexPath.row];
     
     TweetViewController *tvc = [[TweetViewController alloc] initWithNibName:@"TweetViewController" andModel:tweet bundle:nil];
     
-    UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController: tvc];
-    [self presentViewController:navigationVC animated:YES completion:nil];
+//    UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController: tvc];
+//    [self presentViewController:navigationVC animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:tvc animated:true];
     
 }
 

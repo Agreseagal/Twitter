@@ -169,7 +169,7 @@
         _menuViewController.toolbarHidden = NO;
         
         // Hide navigation bar
-        _menuViewController.navigationBarHidden = YES;
+//        _menuViewController.navigationBarHidden = YES;
     }
     
     return _menuViewController;
