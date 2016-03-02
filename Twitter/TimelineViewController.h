@@ -10,6 +10,9 @@
 
 @interface TimelineViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, assign) BOOL isEndOfTheTable;
+@property (nonatomic, assign) NSInteger currentResultsPage;
+
 - (id)initWithShowMentions:(BOOL)showMentions;
 
 @end

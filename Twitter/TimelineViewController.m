@@ -213,10 +213,13 @@
     } else {
         // Getting last 20 tweets from home timeline API
         [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
-            NSLog(@"You've go the best json I've ever seen: %@", response);
+            NSLog(@"You've got the best json I've ever seen: %@", response);
             
             // Initializing tweet model with array of json
-            self.tweets = [Tweet tweetsWithArray:response];
+//            self.tweets = [Tweet tweetsWithArray:response];
+            
+            [self.tweets addObjectsFromArray: [Tweet tweetsWithArray:response]];
+            
             [self setTitle:@"Home"];
             
             [self.tableView reloadData];
@@ -267,5 +270,82 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+
+-(void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+    // UITableView only moves in one direction, y axis
+    CGFloat currentOffset = scrollView.contentOffset.y;
+    CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+    
+    //NSInteger result = maximumOffset - currentOffset;
+    
+    // Change 10.0 to adjust the distance from bottom
+    if (maximumOffset - currentOffset <= 10.0) {
+        
+        NSLog(@"end of the table scrollViewDidEndDragging");
+
+        [self reload];
+    }
+}
+
+/*
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView{
+    
+    CGFloat height = self.tableView.frame.size.height;
+    
+    CGFloat contentYoffset = self.tableView.contentOffset.y;
+    
+    CGFloat distanceFromBottom = self.tableView.contentSize.height - contentYoffset;
+    
+    if(distanceFromBottom < height){
+        
+        if (self.isEndOfTheTable == NO){
+            
+            self.isEndOfTheTable = YES;
+            
+            NSLog(@"end of the table");
+            
+            [self loadNextPageOfResults];
+            
+        }
+    }
+}
+*/
+/*
+-(void)scrollViewDidScroll: (UIScrollView*)scrollView{
+    float scrollViewHeight = self.tableView.frame.size.height;
+    float scrollContentSizeHeight = self.tableView.contentSize.height;
+    float scrollOffset = self.tableView.contentOffset.y;
+    
+    if (scrollOffset + scrollViewHeight == scrollContentSizeHeight){
+        //This condition will be true when scrollview will reach to bottom
+        
+        NSLog(@"end of the table");
+        [self reload];
+    }
+    
+}
+*/
+
+- (void)loadNextPageOfResults{
+    
+//    NSLog(@"self.numPages: %@", self.numPages);
+    NSLog(@"self.currentResultsPage: %ld", (long)self.currentResultsPage);
+    
+//    if (self.numPages > 1){
+    
+//        if self.numPages > self.currentResultsPage{
+    
+            NSLog(@"loadNextPageOfResults self.currentResultsPage 1: %ld", self.currentResultsPage);
+            self.currentResultsPage++;
+            NSLog(@"loadNextPageOfResults self.currentResultsPage 2: %ld", self.currentResultsPage);
+    
+//            apiRequestClientSearch(self.currentResultsPage)
+    [self reload];
+//        }
+//    }
+}
+
 
 @end
