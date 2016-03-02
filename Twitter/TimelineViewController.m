@@ -178,6 +178,7 @@
     
     [self.navigationController pushViewController:tvc animated:true];
     
+    
 }
 
 #pragma mark - Private methods
